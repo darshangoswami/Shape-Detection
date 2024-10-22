@@ -3,17 +3,6 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 def myHoughCircleTrain(imBW, c, ptlist):
-    """
-    Train the Hough transform for circle detection using a reference circle.
-    
-    Args:
-        imBW (np.ndarray): Binary input image containing a single circular object
-        c (tuple): Reference point (center of the circle)
-        ptlist (list): Ordered list of boundary points
-    
-    Returns:
-        dict: Training data containing necessary information for circle detection
-    """
     # Calculate relative positions of boundary points from center
     rel_positions = [(x - c[0], y - c[1]) for x, y in ptlist]
     
@@ -30,16 +19,6 @@ def myHoughCircleTrain(imBW, c, ptlist):
     return yourcellvar
 
 def myHoughCircleTest(imBWnew, yourcellvar):
-    """
-    Detect the top 2 circles in a new image using trained circle parameters.
-    
-    Args:
-        imBWnew (np.ndarray): Binary image to detect circles in
-        yourcellvar (dict): Training data from myHoughCircleTrain
-    
-    Returns:
-        list: Top 2 circle centers [(x1,y1), (x2,y2)]
-    """
     height, width = imBWnew.shape
     rel_positions = yourcellvar['rel_positions']
     
